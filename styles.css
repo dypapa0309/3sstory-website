@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #0000ff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #0000ff;
+    padding: 1rem 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.blue-box {
+    background-color: #0000ff;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.step {
+    flex-basis: calc(33.333% - 1rem);
+    margin-bottom: 2rem;
+}
+
+#workflow ol {
+    padding-left: 2rem;
+}
+
+#projects ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#projects li {
+    margin-bottom: 0.5rem;
+}
+
+#cta {
+    text-align: center;
+}
+
+#cta button {
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: white;
+    color: #0000ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#contact form input,
+#contact form textarea {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+#contact form button {
+    background-color: #0000ff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #0000ff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .steps {
+        flex-direction: column;
+    }
+    
+    .step {
+        flex-basis: 100%;
+    }
+}
