@@ -1,9 +1,21 @@
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
 document.addEventListener('DOMContentLoaded', function() {
+    function addEventListeners(element, eventNames, listener) {
+        eventNames.forEach(eventName => {
+            element.addEventListener(eventName, listener, { passive: false });
+        });
+    }
+
+    function safeWindowOpen(url) {
+        setTimeout(() => {
+            window.open(url, '_blank');
+        }, 100);
+    }
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        addEventListeners(anchor, ['click', 'touchend'], function(e) {
             e.preventDefault();
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
@@ -12,21 +24,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Checklist button
-    document.getElementById('checklist-btn').addEventListener('click', function() {
-        window.open('https://forms.gle/rjcKEEvt6rpyDcLT7', '_blank');
-    });
+    const checklistBtn = document.getElementById('checklist-btn');
+    if (checklistBtn) {
+        addEventListeners(checklistBtn, ['click', 'touchend'], function(e) {
+            e.preventDefault();
+            console.log('Checklist button clicked');
+            safeWindowOpen('https://forms.gle/rjcKEEvt6rpyDcLT7');
+        });
+    }
 
     // Newsletter subscription button
-    document.getElementById('newsletter-btn').addEventListener('click', function() {
-        window.open('https://maily.so/lsb.0214', '_blank');
-    });
+    const newsletterBtn = document.getElementById('newsletter-btn');
+    if (newsletterBtn) {
+        addEventListeners(newsletterBtn, ['click', 'touchend'], function(e) {
+            e.preventDefault();
+            console.log('Newsletter button clicked');
+            safeWindowOpen('https://maily.so/lsb.0214');
+        });
+    }
 
     // E-book download button
     const ebookBtn = document.getElementById('ebook-btn');
-    ebookBtn.textContent = '3S system 전자책 무료 신청';
-    ebookBtn.addEventListener('click', function() {
-        window.open('https://docs.google.com/forms/d/e/1FAIpQLSeksMTZXiVeaHdLR0GZATDS-ZhbBbvg4dYoHJU3n9vga8tK6w/viewform', '_blank');
-    });
+    if (ebookBtn) {
+        ebookBtn.textContent = '3S system 전자책 무료 신청';
+        addEventListeners(ebookBtn, ['click', 'touchend'], function(e) {
+            e.preventDefault();
+            console.log('E-book button clicked');
+            safeWindowOpen('https://docs.google.com/forms/d/e/1FAIpQLSeksMTZXiVeaHdLR0GZATDS-ZhbBbvg4dYoHJU3n9vga8tK6w/viewform');
+        });
+    }
 
     // 회원가입 폼 제출 처리
     const signupForm = document.getElementById('signupForm');
@@ -58,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 회원가입 링크 클릭 시 회원가입 섹션으로 스크롤
     const signupLink = document.querySelector('a[href="#signup"]');
     if (signupLink) {
-        signupLink.addEventListener('click', function(e) {
+        addEventListeners(signupLink, ['click', 'touchend'], function(e) {
             e.preventDefault();
             const signupSection = document.getElementById('signup');
             if (signupSection) {
