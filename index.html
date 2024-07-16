@@ -162,36 +162,49 @@
             </ul>
         </section>
 
-<section id="cta" class="blue-section">
-    <h2>3S Story</h2>
-    <p>당신의 이야기를 <br>세상과 공유할 시간입니다.</p>
-    <p>전문적인 3S 시스템으로, <br>당신의 비즈니스 스토리를 <br>차별화된 방법으로 풀어내세요. <br><br><p><strong>지금 바로 3S Story와 함께 하세요!</strong></p><br>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 기존 head 내용 유지 -->
+</head>
+<body>
+    <header>
+        <!-- 기존 header 내용 유지 -->
+    </header>
 
-    <button id="checklist-btn">상담 전 체크리스트 작성하기</button>
-    <button id="newsletter-btn">뉴스레터 구독하기</button>
-    
-</section>
+    <main>
+        <!-- 기존 섹션들 유지 -->
+
+       <section id="cta" class="blue-section">
+            <h2 class="cta-title">3S Story</h2>
+            <p class="cta-text-1">당신의 이야기를 <br>세상과 공유할 시간입니다.</p>
+            <p class="cta-text-2">전문적인 3S 시스템으로, <br>당신의 비즈니스 스토리를 <br>차별화된 방법으로 풀어내세요. <br><br></p>
+            <p class="cta-text-3"><strong>지금 바로 3S Story와 함께 하세요!</strong></p><br>
+            <button id="checklist-btn">상담 전 체크리스트 작성하기</button>
+            <button id="newsletter-btn">뉴스레터 구독하기</button>
+        </section>
       
-      <section id="signup">
-    <h2>회원가입</h2>
-        <p>가입 하시면 3S Stroy system을 <br>셀프 적용하실 수 있는 전자책을 <br>무료로 보내드립니다.
-    <form id="signupForm">
-        <input type="email" id="email" placeholder="이메일" required>
-        <input type="password" id="password" placeholder="비밀번호" required>
-        <button type="submit">가입하기</button>
-    </form>
-</section>
+        <section id="signup">
+            <h2 class="signup-title">회원가입</h2>
+            <p class="signup-text">가입 하시면 3S Story system을 <br>셀프 적용하실 수 있는 전자책을 <br>무료로 보내드립니다.</p>
+            <form id="signupForm">
+                <input type="email" id="email" placeholder="이메일" required>
+                <input type="password" id="password" placeholder="비밀번호" required>
+                <button type="submit">가입하기</button>
+            </form>
+        </section>
       
-<section id="contact">
-    <h2>Get in Touch</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVFmVCDKXeYov7KdEZ4yWb6HxAex4c7wlc37OcrervWBdDxQ/viewform?embedded=true" width="100%" height="854" frameborder="0" marginheight="0" marginwidth="0">로드 중...</iframe>
-    <div class="contact-info">
-        <p>address: 경기도 부천시 원미구 상동로 87, <br>803-102호, 워크네시아</p>
-        <p>license: 876-28-01550</p>
-        <p>e-mail: dypapa0309@gmail.com</p>
-    </div>
-</section>
-   </main>
+        <section id="contact">
+            <h2 class="contact-title">Get in Touch</h2>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVFmVCDKXeYov7KdEZ4yWb6HxAex4c7wlc37OcrervWBdDxQ/viewform?embedded=true" width="100%" height="854" frameborder="0" marginheight="0" marginwidth="0">로드 중...</iframe>
+            <div class="contact-info">
+                <p class="contact-address">address: 경기도 부천시 원미구 상동로 87, <br>803-102호, 워크네시아</p>
+                <p class="contact-license">license: 876-28-01550</p>
+                <p class="contact-email">e-mail: dypapa0309@gmail.com</p>
+            </div>
+        </section>
+    </main>
+
     <footer>
         <p>&copy; 2024 3S Story. All rights reserved.</p>
     </footer>
@@ -221,7 +234,6 @@
         // Firebase 관련 함수들을 전역 스코프에 노출
         window.firebaseAuth = auth;
     </script>
-
     <script src="script.js"></script>
 </body>
 </html>

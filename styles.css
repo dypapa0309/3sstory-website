@@ -162,6 +162,48 @@ footer {
     margin-bottom: 1rem;
 }
 
+/* 새로 추가된 클래스 스타일 */
+#cta .cta-title {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+#cta .cta-text-1 {
+    font-size: 2.4em;
+    margin-bottom: 1rem;
+}
+
+#cta .cta-text-2 {
+    font-size: 2em;
+    margin-bottom: 1rem;
+}
+
+#cta .cta-text-3 {
+    font-size: 2.2em;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+#signup .signup-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+#signup .signup-text {
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+}
+
+#contact .contact-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+#contact .contact-info p {
+    font-size: 1.4em;
+    margin-bottom: 0.5rem;
+}
+
 @media (max-width: 768px) {
     main {
         width: 95%;
@@ -188,6 +230,21 @@ footer {
     }
     #cta p {
         font-size: 2em;
+    }
+    #cta .cta-title {
+        font-size: 2.5em;
+    }
+    #cta .cta-text-1, #cta .cta-text-2, #cta .cta-text-3 {
+        font-size: 2em;
+    }
+    #signup .signup-title, #contact .contact-title {
+        font-size: 2.2em;
+    }
+    #signup .signup-text {
+        font-size: 1.6em;
+    }
+    #contact .contact-info p {
+        font-size: 1.2em;
     }
 }
 
@@ -218,5 +275,20 @@ footer {
     }
     #cta p {
         font-size: 1.6em;
+    }
+    #cta .cta-title {
+        font-size: 2em;
+    }
+    #cta .cta-text-1, #cta .cta-text-2, #cta .cta-text-3 {
+        font-size: 1.6em;
+    }
+    #signup .signup-title, #contact .contact-title {
+        font-size: 1.8em;
+    }
+    #signup .signup-text {
+        font-size: 1.4em;
+    }
+    #contact .contact-info p {
+        font-size: 1em;
     }
 }
