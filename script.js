@@ -3,30 +3,30 @@ import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebase
 document.addEventListener('DOMContentLoaded', function() {
     function addEventListeners(element, eventNames, listener) {
         eventNames.forEach(eventName => {
-            element.addEventListener(eventName, listener, { passive: false });
+            element.addEventListener(eventName, listener);
         });
     }
 
     function safeWindowOpen(url) {
-        setTimeout(() => {
-            window.open(url, '_blank');
-        }, 100);
+        window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        addEventListeners(anchor, ['click', 'touchend'], function(e) {
+        addEventListeners(anchor, ['click', 'touchstart'], function(e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
     // Checklist button
     const checklistBtn = document.getElementById('checklist-btn');
     if (checklistBtn) {
-        addEventListeners(checklistBtn, ['click', 'touchend'], function(e) {
+        addEventListeners(checklistBtn, ['click', 'touchstart'], function(e) {
             e.preventDefault();
             console.log('Checklist button clicked');
             safeWindowOpen('https://forms.gle/rjcKEEvt6rpyDcLT7');
@@ -36,21 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Newsletter subscription button
     const newsletterBtn = document.getElementById('newsletter-btn');
     if (newsletterBtn) {
-        addEventListeners(newsletterBtn, ['click', 'touchend'], function(e) {
+        addEventListeners(newsletterBtn, ['click', 'touchstart'], function(e) {
             e.preventDefault();
             console.log('Newsletter button clicked');
             safeWindowOpen('https://maily.so/lsb.0214');
-        });
-    }
-
-    // E-book download button
-    const ebookBtn = document.getElementById('ebook-btn');
-    if (ebookBtn) {
-        ebookBtn.textContent = '3S system 전자책 무료 신청';
-        addEventListeners(ebookBtn, ['click', 'touchend'], function(e) {
-            e.preventDefault();
-            console.log('E-book button clicked');
-            safeWindowOpen('https://docs.google.com/forms/d/e/1FAIpQLSeksMTZXiVeaHdLR0GZATDS-ZhbBbvg4dYoHJU3n9vga8tK6w/viewform');
         });
     }
 
@@ -62,34 +51,41 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
+            if (typeof window.firebaseAuth === 'undefined') {
+                console.error("Firebase Auth is not initialized");
+                showMessage("시스템 오류가 발생했습니다. 나중에 다시 시도해 주세요.");
+                return;
+            }
+
             createUserWithEmailAndPassword(window.firebaseAuth, email, password)
                 .then((userCredential) => {
-                    // 회원가입 성공
-                    const user = userCredential.user;
-                    console.log("User registered:", user);
-                    alert("회원가입이 완료되었습니다!");
-                    // 여기에 회원가입 성공 후 추가 동작을 넣을 수 있습니다.
-                    // 예: 홈페이지로 리다이렉트 또는 로그인 상태 업데이트
+                    console.log("User registered:", userCredential.user);
+                    showMessage("회원가입이 완료되었습니다!");
                 })
                 .catch((error) => {
-                    // 에러 처리
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.error("Error:", errorCode, errorMessage);
-                    alert("회원가입 중 오류가 발생했습니다: " + errorMessage);
+                    console.error("Error:", error.code, error.message);
+                    showMessage("회원가입 중 오류가 발생했습니다: " + error.message);
                 });
         });
     }
-
-    // 회원가입 링크 클릭 시 회원가입 섹션으로 스크롤
-    const signupLink = document.querySelector('a[href="#signup"]');
-    if (signupLink) {
-        addEventListeners(signupLink, ['click', 'touchend'], function(e) {
-            e.preventDefault();
-            const signupSection = document.getElementById('signup');
-            if (signupSection) {
-                signupSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    }
 });
+
+function showMessage(message) {
+    // 커스텀 알림 메시지 표시
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '20px';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translateX(-50%)';
+    messageElement.style.backgroundColor = 'rgba(0,0,0,0.8)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px 20px';
+    messageElement.style.borderRadius = '5px';
+    messageElement.style.zIndex = '1000';
+    document.body.appendChild(messageElement);
+    
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, 3000);
+}
