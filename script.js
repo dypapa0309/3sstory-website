@@ -6,6 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
             element.addEventListener(eventName, listener);
         });
     }
+  
+  // 미니게임 버튼
+    const playGameBtn = document.getElementById('play-game-btn');
+    if (playGameBtn) {
+        addEventListeners(playGameBtn, ['click', 'touchstart'], function(e) {
+            e.preventDefault();
+            console.log('Mini-game button clicked');
+            safeWindowOpen('https://logowar.netlify.app/');
+        });
+    }
 
     function safeWindowOpen(url) {
         window.open(url, '_blank', 'noopener,noreferrer');

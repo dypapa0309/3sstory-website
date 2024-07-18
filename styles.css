@@ -60,7 +60,7 @@ section {
 
 h1, h2, h3 {
     text-align: center;
-    color: var(--main-white);
+    color: var(white);
 }
 
 .subtitle {
@@ -268,14 +268,72 @@ footer {
     font-weight: bold;
 }
 
-#signup .signup-title {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
+#signup {
+    text-align: center;
+    padding: 20px;
 }
 
-#signup .signup-text {
+.signup-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: var(--text-blue);
+}
+
+.signup-text {
     font-size: 1.8em;
     margin-bottom: 1rem;
+    color: #666;
+}
+
+#signupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#signupForm input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#signupForm button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--main-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#signupForm button:hover {
+    background-color: #3151a8;
+}
+
+@media (max-width: 768px) {
+    .signup-title {
+        font-size: 2.2em;
+    }
+    .signup-text {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-title {
+        font-size: 1.8em;
+    }
+    .signup-text {
+        font-size: 1.4em;
+    }
 }
 
 #contact .contact-title {
@@ -375,5 +433,38 @@ footer {
     #contact .contact-info p {
         font-size: 1em;
     }
+}
+
+#mini-game {
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.game-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: var(--text-blue);
+}
+
+.game-description {
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+#play-game-btn {
+    padding: 10px 20px;
+    background-color: var(--main-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#play-game-btn:hover {
+    background-color: #3151a8;
 }
 
