@@ -1,3 +1,22 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDUXq-xxfcFczuGetdwZhY25qQgQHLJkGA",
+    authDomain: "fir-story-c0236.firebaseapp.com",
+    databaseURL: "https://fir-story-c0236-default-rtdb.firebaseio.com",
+    projectId: "fir-story-c0236",
+    storageBucket: "fir-story-c0236.appspot.com",
+    messagingSenderId: "833687841349",
+    appId: "1:833687841349:web:f3b64406da1a1623c9112c",
+    measurementId: "G-Q1LSHVHSWL"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const analytics = getAnalytics(app);
+
 document.addEventListener('DOMContentLoaded', function() {
     function addEventListeners(element, eventNames, listener) {
         eventNames.forEach(eventName => {
@@ -51,40 +70,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // 비밀번호 유효성 검사 함수
+    function isPasswordValid(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasNonalphas = /\W/.test(password);
+        return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasNonalphas;
+    }
+
     // 회원가입 폼 제출 처리
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const submitButton = signupForm.querySelector('button[type="submit"]');
+
+        // 입력 필드 변경 시 버튼 활성화 상태 업데이트
+        function updateButtonState() {
+            submitButton.disabled = !(emailInput.value.trim() && passwordInput.value.trim());
+        }
+
+        emailInput.addEventListener('input', updateButtonState);
+        passwordInput.addEventListener('input', updateButtonState);
+
+        signupForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = emailInput.value;
+            const password = passwordInput.value;
             
-            if (typeof window.firebaseAuth === 'undefined') {
-                console.error("Firebase Auth is not initialized");
-                showMessage("시스템 오류가 발생했습니다. 나중에 다시 시도해 주세요.");
+            if (!isPasswordValid(password)) {
+                showMessage("비밀번호는 8자 이상이며, 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다.", "error");
                 return;
             }
-            createUserWithEmailAndPassword(window.firebaseAuth, email, password)
-                .then((userCredential) => {
-                    console.log("User registered:", userCredential.user);
-                    showMessage("회원가입이 완료되었습니다!");
-                })
-                .catch((error) => {
-                    console.error("Error:", error.code, error.message);
-                    showMessage("회원가입 중 오류가 발생했습니다: " + error.message);
-                });
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                console.log("User registered:", userCredential.user);
+                showMessage("회원가입이 완료되었습니다!", "success");
+                signupForm.reset();
+                updateButtonState();
+            } catch (error) {
+                console.error("Error:", error.code, error.message);
+                let errorMessage = "회원가입 중 오류가 발생했습니다: ";
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        errorMessage += "이미 사용 중인 이메일 주소입니다.";
+                        break;
+                    case 'auth/invalid-email':
+                        errorMessage += "유효하지 않은 이메일 주소입니다.";
+                        break;
+                    case 'auth/weak-password':
+                        errorMessage += "비밀번호가 너무 약합니다.";
+                        break;
+                    default:
+                        errorMessage += error.message;
+                }
+                showMessage(errorMessage, "error");
+            }
         });
+
+        // 초기 버튼 상태 설정
+        updateButtonState();
     }
 });
 
-function showMessage(message) {
+function showMessage(message, type) {
     const messageElement = document.createElement('div');
     messageElement.textContent = message;
     messageElement.style.position = 'fixed';
     messageElement.style.top = '20px';
     messageElement.style.left = '50%';
     messageElement.style.transform = 'translateX(-50%)';
-    messageElement.style.backgroundColor = 'rgba(0,0,0,0.8)';
+    messageElement.style.backgroundColor = type === 'error' ? 'rgba(255,0,0,0.8)' : 'rgba(0,128,0,0.8)';
     messageElement.style.color = 'white';
     messageElement.style.padding = '10px 20px';
     messageElement.style.borderRadius = '5px';
