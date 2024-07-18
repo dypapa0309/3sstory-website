@@ -1,5 +1,3 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-
 document.addEventListener('DOMContentLoaded', function() {
     function addEventListeners(element, eventNames, listener) {
         eventNames.forEach(eventName => {
