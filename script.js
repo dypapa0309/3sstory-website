@@ -6,8 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
             element.addEventListener(eventName, listener);
         });
     }
-  
-  // 미니게임 버튼
+
+    function safeWindowOpen(url) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    // 미니게임 버튼
     const playGameBtn = document.getElementById('play-game-btn');
     if (playGameBtn) {
         addEventListeners(playGameBtn, ['click', 'touchstart'], function(e) {
@@ -15,10 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Mini-game button clicked');
             safeWindowOpen('https://logowar.netlify.app/');
         });
-    }
-
-    function safeWindowOpen(url) {
-        window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     // Smooth scrolling for navigation links
@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage("시스템 오류가 발생했습니다. 나중에 다시 시도해 주세요.");
                 return;
             }
-
             createUserWithEmailAndPassword(window.firebaseAuth, email, password)
                 .then((userCredential) => {
                     console.log("User registered:", userCredential.user);
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function showMessage(message) {
-    // 커스텀 알림 메시지 표시
     const messageElement = document.createElement('div');
     messageElement.textContent = message;
     messageElement.style.position = 'fixed';
