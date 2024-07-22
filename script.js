@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (playGameBtn) {
         playGameBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            window.open('https://logowar.netlify.app/', '_blank');
+            window.open('https://make100services.netlify.app/', '_blank');
         });
     }
 
