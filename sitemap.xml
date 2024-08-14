@@ -7,25 +7,25 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://3s-story.site/#about</loc>
+    <loc>https://3s-story.site/about</loc>
     <lastmod>2024-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://3s-story.site/#services</loc>
+    <loc>https://3s-story.site/services</loc>
     <lastmod>2024-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://3s-story.site/#projects</loc>
+    <loc>https://3s-story.site/projects</loc>
     <lastmod>2024-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://3s-story.site/#contact</loc>
+    <loc>https://3s-story.site/contact</loc>
     <lastmod>2024-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
